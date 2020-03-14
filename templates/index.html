@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Prediksi Harga Mobil Bekas</title>
+
+<style>
+body {
+    background-color: #34495e;
+}
+
+</style>
+</head>
+
+<center>
+
+  <body>
+
+</center>
+
+<style type="text/css">
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #34495e ;
+  width: 100%;
+  height:100%;
+  font-size: 18px;
+  text-align:center;
+  letter-spacing:1.2px;
+}
+
+.login {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin: -150px 0 0 -150px;
+  width:400px;
+  height:400px;
+}
+
+input[type="text"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 3px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+input[type="text"] {
+  width: 180px;
+  border-color: #2ecc71;
+}
+
+select{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 3px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+select{
+  width: 180px;
+  border-color: #2ecc71;
+}
+
+button{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 14px 10px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+  
+</style>
+
+ <div class="login">
+  <h2> <font color="black"> Berapa Harga Mobil Anda ? </font> </h2> 
+     <!-- Main Input For Receiving Query to our ML -->
+  <form action="{{ url_for('predict')}}" method="post">
+  <label for="Mobil"></label>
+  <select id="Mobil" name="Mobil"> 
+  <option value="0">Daihatsu</option> 
+  <option value="1">Honda</option> 
+  <option value="2">Mitsubishi</option> 
+  <option value="3">Suzuki</option> 
+  <option value="4">Toyota</option> 
+  </select> 
+  <br> 
+  <label for="Jenis"></label> 
+  <select id="Jenis" name="Jenis"> 
+  <option value="0">APV</option>
+  <option value="1">Accord</option> 
+  <option value="2">Agya</option> 
+  <option value="3">Alphard</option> 
+  <option value="4">Avanza</option> 
+  <option value="5">Ayla</option> 
+  <option value="6">BR-V</option> 
+  <option value="7">Baleno</option> 
+  <option value="8">Brio</option> 
+  <option value="9">CR-V</option> 
+  <option value="10">Calya</option> 
+  <option value="11">City</option> 
+  <option value="12">Civic</option> 
+  <option value="13">Ertiga</option> 
+  <option value="14">Etios</option> 
+  <option value="15">Fortuner</option> 
+  <option value="16">Freed</option> 
+  <option value="17">Gran Max</option> 
+  <option value="18">Grand Vitara</option> 
+  <option value="19">HR-V</option> 
+  <option value="20">Ignis</option> 
+  <option value="21">Jazz</option> 
+  <option value="22">Karimun Wagon</option> 
+  <option value="23">Kijang Innova</option> 
+  <option value="24">Mirage</option> 
+  <option value="25">Mobilio</option> 
+  <option value="26">Outlander Sport</option> 
+  <option value="27">Pajero Sport</option> 
+  <option value="28">Rush</option> 
+  <option value="29">SX4</option> 
+  <option value="30">Sigra</option>
+  <option value="31">Sirion</option> 
+  <option value="32">Splash</option> 
+  <option value="33">Swift</option> 
+  <option value="34">Terios</option> 
+  <option value="35">Vellfire</option> 
+  <option value="36">Vios</option> 
+  <option value="37">Xenia</option> 
+  <option value="38">Xpander</option> 
+  <option value="39">Yaris</option> 
+  </select> 
+  <br> 
+  <label for="Tipe"></label> 
+  <select id="Tipe" name="Tipe"> 
+  <option value="0">1.0 D</option>
+  <option value="1">1.0 D+</option> 
+  <option value="2">1.0 GL</option> 
+  <option value="3">1.0 GS</option> 
+  <option value="4">1.0 GX</option> 
+  <option value="5">1.0 Li</option> 
+  <option value="6">1.0 M</option> 
+  <option value="7">1.0 M Sporty</option> 
+  <option value="8">1.0 Mi</option> 
+  <option value="9">1.0 X</option> 
+  <option value="10">1.0 X Deluxe</option> 
+  <option value="11">1.0 X Elegant</option> 
+  <option value="12">1.2 E</option> 
+  <option value="13">1.2 E CVT</option> 
+  <option value="14">1.2 Exceed</option> 
+  <option value="15">1.2 G</option> 
+  <option value="16">1.2 GL</option> 
+  <option value="17">1.2 GLS</option> 
+  <option value="18">1.2 GLX</option> 
+  <option value="19">1.2 GX</option> 
+  <option value="20">1.2 R</option> 
+  <option value="21">1.2 R Deluxe</option> 
+  <option value="22">1.2 RS</option> 
+  <option value="23">1.2 RS CVT</option> 
+  <option value="24">1.2 S</option> 
+  <option value="25">1.2 Sport</option> 
+  <option value="26">1.2 TRD S</option> 
+  <option value="27">1.2 Valco E</option> 
+  <option value="28">1.2 Valco G</option> 
+  <option value="29">1.2 Valco JX</option> 
+  <option value="30">1.2 Valco Toms</option>
+  <option value="31">1.2 X</option> 
+  <option value="32">1.2 X Deluxe</option> 
+  <option value="33">1.3 A</option> 
+  <option value="34">1.3 D DLi</option> 
+  <option value="35">1.3 DLi Blind Van</option> 
+  <option value="36">1.3 DLi Pickup</option> 
+  <option value="37">1.3 Deluxe</option> 
+  <option value="38">1.3 E</option> 
+  <option value="39">1.3 G</option>
+  <option value="40">1.3 GA</option>
+  <option value="41">1.3 GL</option> 
+  <option value="42">1.3 GX</option> 
+  <option value="43">1.3 Hatchback</option> 
+  <option value="44">1.3 M</option> 
+  <option value="45">1.3 R</option> 
+  <option value="46">1.3 R Custom</option> 
+  <option value="47">1.3 R Deluxe</option> 
+  <option value="48">1.3 R Sporty</option> 
+  <option value="49">1.3 Sport</option> 
+  <option value="50">1.3 X</option> 
+  <option value="51">1.3 X Deluxe</option> 
+  <option value="52">1.3 Xi</option> 
+  <option value="53">1.4 Dreza</option> 
+  <option value="54">1.4 GL</option> 
+  <option value="55">1.4 GX</option> 
+  <option value="56">1.5 A</option> 
+  <option value="57">1.5 Blind Van</option> 
+  <option value="58">1.5 D VVT-i</option> 
+  <option value="59">1.5 DLX</option> 
+  <option value="60">1.5 DSI</option> 
+  <option value="61">1.5 DX</option> 
+  <option value="62">1.5 E</option> 
+  <option value="63">1.5 E CVT</option> 
+  <option value="64">1.5 E CVT Prestige</option> 
+  <option value="65">1.5 E CVT Turbo</option> 
+  <option value="66">1.5 E VTEC</option> 
+  <option value="67">1.5 E  i-VTEC</option> 
+  <option value="68">1.5 Exceed</option> 
+  <option value="69">1.5 G</option> 
+  <option value="70">1.5 G TRD S</option>
+  <option value="71">1.5 GA</option> 
+  <option value="72">1.5 GE</option> 
+  <option value="73">1.5 GL</option> 
+  <option value="74">1.5 GLS</option> 
+  <option value="75">1.5 GLX</option> 
+  <option value="76">1.5 GT</option> 
+  <option value="77">1.5 GX</option> 
+  <option value="78">1.5 J</option> 
+  <option value="79">1.5 L</option> 
+  <option value="80">1.5 L I4</option>
+  <option value="81">1.5 L Turbo I4</option> 
+  <option value="82">1.5 Next G</option> 
+  <option value="83">1.5 Prestige</option> 
+  <option value="84">1.5 R</option> 
+  <option value="85">1.5 R Custom</option> 
+  <option value="86">1.5 R Deluxe</option> 
+  <option value="87">1.5 RS</option> 
+  <option value="88">1.5 RS CVT</option> 
+  <option value="89">1.5 S</option> 
+  <option value="90">1.5 S CVT</option> 
+  <option value="91">1.5 S Limited</option> 
+  <option value="92">1.5 S TRD S</option> 
+  <option value="93">1.5 S-Cross</option> 
+  <option value="94">1.5 SGX</option> 
+  <option value="95">1.5 SGX Luxury</option> 
+  <option value="96">1.5 ST</option> 
+  <option value="97">1.5 Sport</option> 
+  <option value="98">1.5 TRD S</option> 
+  <option value="99">1.5 TS</option> 
+  <option value="100">1.5 TX</option> 
+  <option value="101">1.5 Ultimate</option> 
+  <option value="102">1.5 VTEC Turbo</option> 
+  <option value="103">1.5 VVT-i Pickup</option> 
+  <option value="104">1.5 Veloz</option> 
+  <option value="105">1.5 X</option> 
+  <option value="106">1.5 X Deluxe</option> 
+  <option value="107">1.5 X-Over</option> 
+  <option value="108">1.5 X-Over RC1</option> 
+  <option value="109">1.5 X-over</option> ## sama kaya 107
+  <option value="110">1.5 Z</option>
+  <option value="111">1.5 Z VTEC</option> 
+  <option value="112">1.5 i-DSI</option> 
+  <option value="113">1.6 EG</option> 
+  <option value="114">1.8 Prestige</option> 
+  <option value="115">1.8 VTEC VTIL</option> 
+  <option value="116">1.8 i-VTEC</option> 
+  <option value="117">2.4 V</option> 
+  <option value="118">2.0 E</option> 
+  <option value="119">2.0 G</option>
+  <option value="120">2.0 G Lux</option>
+  <option value="121">2.0 G Reborn</option> 
+  <option value="122">2.0 GLS</option> 
+  <option value="123">2.0 GLX</option> 
+  <option value="124">2.0 J</option> 
+  <option value="125">2.0 JLX</option> 
+  <option value="126">2.0 L I4</option> 
+  <option value="127">2.0 L i-VTEC</option> 
+  <option value="128">2.0 PX</option> 
+  <option value="129">2.0 Q</option> 
+  <option value="130">2.0 Q Reborn</option> 
+  <option value="131">2.0 R Turbo</option> 
+  <option value="132">2.0 V</option> 
+  <option value="133">2.0 V Lux</option> 
+  <option value="134">2.0 V Lux Reborn</option> 
+  <option value="135">2.0 V Reborn</option> 
+  <option value="136">2.0 VTEC Vti</option> 
+  <option value="137">2.4 G</option> 
+  <option value="138">2.4 G Lux</option> 
+  <option value="139">2.4 G Lux Reborn</option> 
+  <option value="140">2.4 G Reborn</option> 
+  <option value="141">2.4 JLX</option> 
+  <option value="142">2.4 L I4</option> 
+  <option value="143">2.4 Q</option> 
+  <option value="144">2.4 Q Reborn</option> 
+  <option value="145">2.4 S</option> 
+  <option value="146">2.4 SC</option> 
+  <option value="147">2.4 V</option> 
+  <option value="148">2.4 V Reborn</option> 
+  <option value="149">2.4 VRZ</option> 
+  <option value="150">2.4 VRZ Lux</option>
+  <option value="151">2.4 VRZ TRD S</option> 
+  <option value="152">2.4 VTEC VTiL</option> 
+  <option value="153">2.4 VTEC Vti</option> 
+  <option value="154">2.4 X</option> 
+  <option value="155">2.4 Z</option> 
+  <option value="156">2.4 ZG</option> 
+  <option value="157">2.5 Dakar 4x2</option> 
+  <option value="158">2.5 Dakar 4x4</option> 
+  <option value="159">2.5 Dakar Limited 4x2</option>
+  <option value="160">2.5 Dakar Ultimate 4x2</option> 
+  <option value="161">2.5 E</option> 
+  <option value="162">2.5 Exceed</option> 
+  <option value="163">2.5 Exceed 4x4</option> 
+  <option value="164">2.5 G</option> 
+  <option value="165">2.5 G TRD S</option> 
+  <option value="166">2.5 G TRD S VNT</option> 
+  <option value="167">2.5 GLS 4x2</option> 
+  <option value="168">2.5 GLX 4x4</option> 
+  <option value="169">2.5 Limited</option> 
+  <option value="170">2.5 Rockford</option>
+  <option value="171">2.5 V</option> 
+  <option value="172">2.5 X</option> 
+  <option value="173">2.7 G</option> 
+  <option value="174">2.7 G Lux</option> 
+  <option value="175">2.7 G TRD S</option> 
+  <option value="176">2.7 SRZ</option> 
+  <option value="177">2.7 V</option> 
+  <option value="178">3.0 MZG</option> 
+  <option value="179">3.5 Q</option> 
+  </select> 
+  <br> 
+  <label for="gearshift"></label> 
+  <select id="gearshift" name="gearshift"> 
+  <option value="0">Manual</option> 
+  <option value="1">Otomatis</option> 
+  </select> 
+  <br> 
+  <label for="fuel"></label> 
+  <select id="fuel" name="fuel"> 
+  <option value="0">Bensin</option> 
+  <option value="1">Solar</option> 
+  </select> 
+  <br> 
+  <label for="distance"></label> 
+  <input type="text" id="distance" name="distance" placeholder="Jarak"> 
+  <br>
+  <label for="city"></label> 
+  <select id="city" name="city"> 
+  <option value="0">Aceh</option>
+  <option value="1">Bali</option> 
+  <option value="2">Banten</option> 
+  <option value="3">Bengkulu</option> 
+  <option value="4">DI Yogyakarta</option> 
+  <option value="5">DKI Jakarta</option> 
+  <option value="6">Jambi</option> 
+  <option value="7">Jawa Barat</option> 
+  <option value="8">Jawa Tengah</option> 
+  <option value="9">Jawa Timur</option> 
+  <option value="10">Kalimantan Barat</option> 
+  <option value="11">Kalimantan Selatan</option> 
+  <option value="12">Kalimantan Timur</option> 
+  <option value="13">Kepulauan Riau</option> 
+  <option value="14">Lampung</option> 
+  <option value="15">NTB</option> 
+  <option value="16">Sulawesi Selatan</option> 
+  <option value="17">Sulawesi Utara</option> 
+  <option value="18">Sumatra Barat</option> 
+  <option value="19">Sumatra Selatan</option> 
+  <option value="20">Sumatra Utara</option> 
+  </select> 
+  <br>
+  <label for="Tahun"></label> 
+  <input type="text" id="Tahun" name="Tahun" placeholder="Tahun"> 
+  <br> 
+  <button type="submit" class="btn btn-primary btn-block btn-large">Prediksi</button>
+    </form>
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
